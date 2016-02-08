@@ -1,13 +1,31 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# hola, hola
+fichero = open("/etc/passwd", "r")
+usuarios = fichero.readlines()
+fichero.close()
 
-fd = open('/etc/passwd', 'r')
+dicc_usuarios = {}
+for linea in usuarios:
+    contenido = linea.split(":")
+    dicc_usuarios[contenido[0]] = contenido[-1]
 
-lineas = fd.readlines()
-fd.close()
+try:
+    print "root", "->", dicc_usuarios["root"][:-1]
+except KeyError:
+    print ("Usuario no encontrado")
+        
+try:
+    print "imaginario", "->", dicc_usuarios["imaginario"][:-1]
+except KeyError:
+    print ("Usuario no encontrado")
 
-for linea in lineas:
-    elementos = linea.split(':')
-    print elementos[0], elementos[-1][:-1]
+
+
+
+
+
+
+
+
+
